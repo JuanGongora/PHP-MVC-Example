@@ -4,5 +4,10 @@
  * Front controller
  */
 
-//test this out by going to url and setting a delimeter with a value and you'll see string output
-echo 'Requested URL = "' . $_SERVER['QUERY_STRING'] . '"';
+//Routing
+require "../Core/Router.php";
+
+$router = new Router();
+
+//check to see if require is loading class
+echo get_class($router);
