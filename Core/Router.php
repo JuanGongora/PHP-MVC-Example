@@ -35,12 +35,22 @@ class Router {
      */
     public function match($url) {
 
-        foreach ($this->routes as $route => $params) {
+        //match the fixed url format to /controller/action
+        $reg_exp = "/^(?P<controller>[a-z-]+)\/(?P<action>[a-z-]+)$/"; //https://www.phpliveregex.com/
 
-            if ($url == $route) {
-                $this->params = $params;
-                return true;
+        if (preg_match($reg_exp, $url, $matches)) {
+
+            //get named capture group values
+            $params = [];
+
+            foreach ($matches as $key => $match) {
+                if (is_string($key)) {
+                    $params[$key] = $match;
+                }
             }
+
+            $this->params = $params;
+            return true;
         }
 
         return false;
