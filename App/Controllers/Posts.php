@@ -12,6 +12,8 @@ class Posts {
      */
     public function index() {
         echo "Hello from the index action inside Posts controller!";
+        echo '<p>Query string parameters: <pre>' .
+            htmlspecialchars(print_r($_GET, true)) . '</pre></p>';
     }
 
     /**
