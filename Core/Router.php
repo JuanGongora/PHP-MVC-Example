@@ -10,9 +10,19 @@ class Router {
 
     /**
      * @param $route
-     * @param $params (controller, action, etc.)
+     * @param array $params (controller, action, etc.)
      */
-    public function add($route, $params) {
+    public function add($route, $params = []) {
+
+        //convert route to regex, escaping forward slashes throughout to prevent premature regex endings
+        $route = preg_replace('/\//', '\\/', $route);
+
+        //convert variables e.g. {controller} to (?P<controller>[a-z-]+)
+        //when replacing, you can refer to capture groups using \1, \2 etc. for each capture group
+        $route = preg_replace('/\{([a-z]+)\}/', '(?P<\1>[a-z-]+)', $route);
+
+        //add start and end delimeters, and case insensitive flag
+        $route = '/^' . $route . '$/i';
 
         $this->routes[$route] = $params;
     }
@@ -35,26 +45,23 @@ class Router {
      */
     public function match($url) {
 
-        //match the fixed url format to /controller/action
-        $reg_exp = "/^(?P<controller>[a-z-]+)\/(?P<action>[a-z-]+)$/"; //https://www.phpliveregex.com/
+         foreach ($this->routes as $route => $params) {
 
-        if (preg_match($reg_exp, $url, $matches)) {
+             if (preg_match($route, $url, $matches)) {
 
-            //get named capture group values
-            $params = [];
+                    foreach ($matches as $key => $match) {
+                        if (is_string($key)) {
+                            $params[$key] = $match;
+                        }
+                    }
 
-            foreach ($matches as $key => $match) {
-                if (is_string($key)) {
-                    $params[$key] = $match;
+                    $this->params = $params;
+                    return true;
                 }
+
             }
-
-            $this->params = $params;
-            return true;
+            return false;
         }
-
-        return false;
-    }
 
     /**
      * gets the currently matched parameters
