@@ -21,6 +21,11 @@ class Router {
         //when replacing, you can refer to capture groups using \1, \2 etc. for each capture group
         $route = preg_replace('/\{([a-z]+)\}/', '(?P<\1>[a-z-]+)', $route);
 
+        //convert variables with custom regex, e.g. {id:\d+} to (?P<id>\d+)
+        //whatever comes after : can be anything BUT a curly brace, as this would signal the end of the regex
+        //if first character inside a capture group [] is the caret ^ , then that rejects anything in the group
+        $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
+
         //add start and end delimeters, and case insensitive flag
         $route = '/^' . $route . '$/i';
 
