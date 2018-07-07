@@ -1,18 +1,20 @@
 <?php
 
+namespace App\Controllers;
+
 /**
  * Posts controller
  */
 class Posts {
 
-    /*
+    /**
      * show the index page
      */
     public function index() {
         echo "Hello from the index action inside Posts controller!";
     }
 
-    /*
+    /**
      * show the add new page
      */
     public function addNew() {

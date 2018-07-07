@@ -4,19 +4,25 @@
  * Front controller
  */
 
-//Controller
-require "../App/Controllers/Posts.php";
 
-//Routing
-require "../Core/Router.php";
+/**
+ * Autoloader
+ */
+spl_autoload_register(function ($class) {
+    //get the parent directory
+    $root = dirname(__DIR__);
+    $file = $root . '/' . str_replace('\\', '/', $class) . '.php';
+    //checks if file exists and is readable
+    if (is_readable($file)) {
+        require $root . '/' . str_replace('\\', '/', $class) . '.php';
+    }
+});
 
-$router = new Router();
+$router = new Core\Router();
 
 //add the routes, it's common to add specific routes first, then the more generalized routes at the end:
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
-$router->add('posts', ['controller' => 'Posts', 'action' => 'index']);
 $router->add('{controller}/{action}');
-$router->add('admin/{action}/{controller}');
 $router->add('{controller}/{id:\d+}/{action}');
 
 //uses matching routes with active classes/methods
