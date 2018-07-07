@@ -4,6 +4,9 @@
  * Front controller
  */
 
+//Controller
+require "../App/Controllers/Posts.php";
+
 //Routing
 require "../Core/Router.php";
 
@@ -16,19 +19,5 @@ $router->add('{controller}/{action}');
 $router->add('admin/{action}/{controller}');
 $router->add('{controller}/{id:\d+}/{action}');
 
-// Display the routing table
-echo '<pre>';
-echo htmlspecialchars(print_r($router->getRoutes(), true));
-echo '</pre>';
-
-//match the requested route
-$url = $_SERVER['QUERY_STRING'];
-
-//display routing table
-if ($router->match($url)) {
-    echo "<pre>";
-    var_dump($router->getParams());
-    echo "</pre>";
-} else {
-    echo "No route found for URL '{$url}'";
-}
+//uses matching routes with active classes/methods
+$router->dispatch($_SERVER['QUERY_STRING']);
