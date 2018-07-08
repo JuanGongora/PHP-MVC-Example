@@ -95,6 +95,7 @@ class Router {
      * @param string $url The route URL
      *
      * @return void
+     * @throws \Exception
      */
     public function dispatch($url) {
 
