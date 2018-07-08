@@ -7,6 +7,13 @@
 
 <body>
     <h1>Welcome</h1>
-<p>Hello from the view!</p>
+        <p>Hello <?= htmlspecialchars($name) ?>!</p>
+
+    <ul>
+        <?php foreach ($languages as $language): ?>
+        <li><?= htmlspecialchars($language) ?></li>
+        <?php endforeach; ?>
+    </ul>
+
 </body>
 </html>

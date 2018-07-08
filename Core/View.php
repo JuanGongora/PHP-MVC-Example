@@ -9,7 +9,9 @@ class View {
      *
      * @param $view
      */
-    public static function render($view) {
+    public static function render($view, $args = []) {
+
+        extract($args, EXTR_SKIP);
 
         //relative to core directory
         $file = "../App/Views/$view";
