@@ -113,9 +113,13 @@ class Router {
                 $action = $this->params["action"];
                 $action = $this->convertToCamelCase($action);
 
-                //after adding the __call  method, the check to see if the action exists or not
-                //(and the error display if not) is now done in the __call  method inside Controller
-                $controller_object->$action();
+                //prevents unathorized access to methods by suffixing the Action string in the url
+                //since url calls to actions are just the prefix, and the suffix is only added at __call() in Controller
+                if (preg_match('/action$/i', $action) == 0) {
+                    $controller_object->$action();
+                } else {
+                    throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
+                }
 
             } else {
                 echo "Controller class {$controller} not found";
