@@ -5,13 +5,32 @@ namespace App\Controllers;
 /**
  * Home controller
  */
-
 class Home extends \Core\Controller {
 
     /**
-     * show the index page
+     * Before filter
+     *
+     * @return void
      */
-    public function index() {
-        echo "Hello from the index action in the Home controller!";
+    protected function before() {
+        echo "(before) ";
+    }
+
+    /**
+     * After filter
+     *
+     * @return void
+     */
+    protected function after() {
+        echo " (after)";
+    }
+
+    /**
+     * Show the index page
+     *
+     * @return void
+     */
+    public function indexAction() {
+        echo 'Hello from the index action in the Home controller!';
     }
 }

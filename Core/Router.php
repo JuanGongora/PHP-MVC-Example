@@ -113,13 +113,10 @@ class Router {
                 $action = $this->params["action"];
                 $action = $this->convertToCamelCase($action);
 
-                if (is_callable([$controller_object, $action])) {
+                //after adding the __call  method, the check to see if the action exists or not
+                //(and the error display if not) is now done in the __call  method inside Controller
+                $controller_object->$action();
 
-                    $controller_object->$action();
-
-                } else {
-                    echo "Method {$action} (in controller {$controller}) not found";
-                }
             } else {
                 echo "Controller class {$controller} not found";
             }
