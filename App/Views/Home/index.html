@@ -1,11 +1,9 @@
-<! DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
     <h1>Welcome</h1>
         <p>Hello in Twig {{ name }}!</p>
 
@@ -15,5 +13,4 @@
         {% endfor %}
     </ul>
 
-</body>
-</html>
+{% endblock %}

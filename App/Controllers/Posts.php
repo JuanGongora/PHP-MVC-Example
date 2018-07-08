@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use \Core\View;
+
 /**
  * Posts controller
  */
@@ -12,6 +14,7 @@ class Posts extends \Core\Controller  {
      */
     public function indexAction() {
         echo "Hello from the index action inside Posts controller!";
+        View::renderTemplate('Posts/index.html');
     }
 
     /**
