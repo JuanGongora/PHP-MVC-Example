@@ -4,24 +4,13 @@
  * Front controller
  */
 
+//autoloads all our content through composer.json parameters
+require '../vendor/autoload.php';
+
 /**
  * Twig
  */
-require_once dirname(__DIR__) . '/vendor/twig/twig/lib/Twig/Autoloader.php';
 Twig_Autoloader::register();
-
-/**
- * Autoloader
- */
-spl_autoload_register(function ($class) {
-    //get the parent directory
-    $root = dirname(__DIR__);
-    $file = $root . '/' . str_replace('\\', '/', $class) . '.php';
-    //checks if file exists and is readable
-    if (is_readable($file)) {
-        require $root . '/' . str_replace('\\', '/', $class) . '.php';
-    }
-});
 
 $router = new Core\Router();
 
