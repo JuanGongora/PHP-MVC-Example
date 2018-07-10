@@ -112,6 +112,8 @@ class Router {
                 $controller_object = new $controller($this->params);
 
                 $action = $this->params["action"];
+
+                //forming the instance method to call from the collected action
                 $action = $this->convertToCamelCase($action);
 
                 //prevents unathorized access to methods by suffixing the Action string in the url
