@@ -46,7 +46,8 @@ abstract class Controller {
                 $this->after();
             }
         } else {
-            echo "Method $method not found in controller " . get_class($this);
+            //construct the exception, note: the message is NOT binary safe
+            throw new \Exception("Method $method not found in controller " . get_class($this));
         }
     }
 

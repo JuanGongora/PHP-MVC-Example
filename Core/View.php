@@ -20,7 +20,8 @@ class View {
         if (is_readable($file)) {
             require $file;
         } else {
-            echo "$file not found";
+            //construct the exception, note: the message is NOT binary safe
+            throw new \Exception("$file not found");
         }
     }
 

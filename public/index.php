@@ -4,7 +4,9 @@
  * Front controller
  */
 
-//autoloads all our content through composer.json parameters
+/**
+ * Autoloads all our content through composer.json parameters
+ */
 require '../vendor/autoload.php';
 
 /**
@@ -12,6 +14,15 @@ require '../vendor/autoload.php';
  */
 Twig_Autoloader::register();
 
+/**
+ * Error and Exception handling
+ */
+set_error_handler('Core\Error::errorHandler');
+set_exception_handler('Core\Error::exceptionHandler');
+
+/**
+ * Routing
+ */
 $router = new Core\Router();
 
 //add the routes, it's common to add specific routes first, then the more generalized routes at the end:
