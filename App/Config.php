@@ -33,4 +33,12 @@ class Config {
      * @var string
      */
     const DB_PASSWORD = '';
+
+    /**
+     * Show or hide error messages on screen
+     * should be set to false when in production
+     *
+     * @var boolean
+     */
+    const SHOW_ERRORS = true;
 }

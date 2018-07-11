@@ -19,6 +19,7 @@ class Post extends \Core\Model {
 
         try {
 
+            //calling the inherited method from Model, that resides in the current class
             $db = static::getDB();
 
             $stmt = $db->query('SELECT id, title, content FROM posts ORDER BY created_at');

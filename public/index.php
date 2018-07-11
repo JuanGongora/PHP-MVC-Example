@@ -17,6 +17,11 @@ Twig_Autoloader::register();
 /**
  * Error and Exception handling
  */
+
+//assign which errors to report back, in this case all of them
+error_reporting(E_ALL);
+
+//setting user-defined handlers
 set_error_handler('Core\Error::errorHandler');
 set_exception_handler('Core\Error::exceptionHandler');
 
