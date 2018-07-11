@@ -37,6 +37,15 @@ class Error {
      */
     public static function exceptionHandler($exception) {
 
+        //code is 404(not found) or 500(general error)
+        $code = $exception->getCode();
+        if ($code != 404) {
+            $code = 500;
+        }
+
+        //get or set the http response code
+        http_response_code($code);
+
         //checks if constant is set to true
         if (\App\Config::SHOW_ERRORS) {
             echo "<h1>Fatal error</h1>";
@@ -48,7 +57,7 @@ class Error {
 
             //returns directory name component of path
             $log = dirname(__DIR__) . '/logs/' . date('Y-m-d') . '.txt';
-echo $log;
+
             //setting temporary error_log in php.ini config path for the length of script
             ini_set('error_log', $log);
 
@@ -62,7 +71,11 @@ echo $log;
             //sends an error message to the web server's error log or to a file
             error_log($message);
 
-            echo "<h1>An error occurred</h1>";
+            if ($code == 404) {
+                echo "<h1>Page not found</h1>";
+            } else {
+                echo "<h1>An error occurred</h1>";
+            }
         }
     }
 }
