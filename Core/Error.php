@@ -71,11 +71,8 @@ class Error {
             //sends an error message to the web server's error log or to a file
             error_log($message);
 
-            if ($code == 404) {
-                echo "<h1>Page not found</h1>";
-            } else {
-                echo "<h1>An error occurred</h1>";
-            }
+            //renders the twig file
+            View::renderTemplate($code . ".html");
         }
     }
 }
