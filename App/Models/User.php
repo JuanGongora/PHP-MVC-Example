@@ -11,9 +11,8 @@ use PDO;
 class User extends \Core\Model {
 
     /**
-     * Get all the posts as an associative array
+     * inserts into DB new user unless they are already a member
      *
-     * @return array
      */
     public static function authenticate() {
 
@@ -27,7 +26,7 @@ class User extends \Core\Model {
             $email = $_POST['email'];
             $pass = $_POST['pass'];
 
-            $sql = "select * from users where email = :email";
+            $sql = "SELECT * FROM users WHERE email = :email";
 
             $stmt = $db->prepare($sql);
 
@@ -44,7 +43,7 @@ class User extends \Core\Model {
                 exit();
             } else {
 
-                $sql = "INSERT INTO `users` (`id`, `name`, `pass`, `email`) VALUES (NULL, :name, :pass, :email)";
+                $sql = "INSERT INTO users (id, name, pass, email) VALUES (NULL, :name, :pass, :email)";
 
                 $stmt = $db->prepare($sql);
 
