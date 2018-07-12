@@ -3,6 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
+    {% block javascripts %}
+    <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
+    {% endblock %}
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        #box {
+            background: #82878c;
+            text-align: center;
+            padding: 10px;
+            color: white;
+            width: 500px;
+            height: 200px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
     <nav>
