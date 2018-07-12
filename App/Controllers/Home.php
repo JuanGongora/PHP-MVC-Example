@@ -35,4 +35,9 @@ class Home extends \Core\Controller {
         echo 'Hello from the index action in the Home controller!';
         View::renderTemplate('Home/index.html', ['name' => 'Juan', 'languages' => ['PHP', 'Ruby', 'HTML', 'CSS']]);
     }
+
+    public function ajaxAction() {
+        echo 'Hello from the ajax action in the Home controller!';
+        View::renderTemplate('Home/ajax.html');
+    }
 }
