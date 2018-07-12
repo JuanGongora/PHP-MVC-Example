@@ -4,7 +4,29 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     {% block javascripts %}
-    <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script>
+        //when page is fully loaded
+        $(document).ready(function () {
+
+            $("#sub").click(function () {
+
+                //a variable that assigns the 'value' of the input with id name
+                var user_name = $("#name").val();
+
+                //post method is activated with the coming response from method in TestAjax.php, with an argument
+                //that holds the assignment for 'name'(could be called anything) as the variable 'user_name' above
+                $.get("/testAjax/testing", {name:user_name}, function (data) {
+
+                    //div with id result will dynamically change its html to contain data function's content (TestAjax.php)
+                    $("#result").html(data);
+                });
+            })
+        });
+    </script>
     {% endblock %}
     <style>
         body {
