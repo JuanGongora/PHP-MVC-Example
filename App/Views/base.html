@@ -14,12 +14,14 @@
 
             $("#sub").click(function () {
 
-                //a variable that assigns the 'value' of the input with id name
+                //a variable that assigns the 'value' of the input with the id
                 var user_name = $("#name").val();
+                var user_email = $("#email").val();
+                var user_pass = $("#pass").val();
 
                 //post method is activated with the coming response from method in TestAjax.php, with an argument
-                //that holds the assignment for 'name'(could be called anything) as the variable 'user_name' above
-                $.get("/testAjax/testing", {name:user_name}, function (data) {
+                //that holds the assignment for 'name, email, pass'(could be called anything) as the variables above
+                $.post("/testAjax/testing", {name:user_name, email:user_email, pass:user_pass}, function (data) {
 
                     //div with id result will dynamically change its html to contain data function's content (TestAjax.php)
                     $("#result").html(data);
@@ -39,7 +41,7 @@
             padding: 10px;
             color: white;
             width: 500px;
-            height: 200px;
+            height: 250px;
             margin: 0 auto;
         }
     </style>
