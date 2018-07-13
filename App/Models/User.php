@@ -67,7 +67,7 @@ class User extends \Core\Model {
 
             $db = static::getDB();
 
-            $stmt = $db->query('SELECT id, name, email FROM users ORDER BY id');
+            $stmt = $db->query('SELECT * FROM chat ORDER BY id DESC');
 
             //returns row as an array indexed by column name
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

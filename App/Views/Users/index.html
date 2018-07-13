@@ -5,29 +5,25 @@
 {% block body %}
 
 <div id="container">
+
     <div id="chat_box">
+
+        {% for user in users %}
         <div id="chat_data">
-            <span class="chat_name">Juan:</span>
-            <span>How's it going?</span>
-            <span class="time">12:30PM</span>
+            <span class="chat_name">{{ user.name }}:</span>
+            <span>{{ user.msg }}</span>
+            <span class="time">{{ user.date }}</span>
         </div>
+        {% endfor %}
+
     </div>
+
     <form action="index" method="post">
         <input type="text" name="name" placeholder="Enter Name"><br>
         <textarea name="enter message" placeholder="Enter Message"></textarea>
         <input type="submit" name="submit" value="Send">
     </form>
-</div>
 
-<div>
-    <h1>Users</h1>
-
-    <ul>
-        {% for user in users %}
-        <h2>{{ user.name }}</h2>
-        <p>{{ user.email }}</p>
-        {% endfor %}
-    </ul>
 </div>
 
 {% endblock %}
