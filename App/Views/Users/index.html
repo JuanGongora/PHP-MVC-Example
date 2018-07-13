@@ -4,13 +4,30 @@
 
 {% block body %}
 
+<div id="container">
+    <div id="chat_box">
+        <div id="chat_data">
+            <span class="chat_name">Juan:</span>
+            <span>How's it going?</span>
+            <span class="time">12:30PM</span>
+        </div>
+    </div>
+    <form action="index" method="post">
+        <input type="text" name="name" placeholder="Enter Name"><br>
+        <textarea name="enter message" placeholder="Enter Message"></textarea>
+        <input type="submit" name="submit" value="Send">
+    </form>
+</div>
+
+<div>
     <h1>Users</h1>
 
     <ul>
         {% for user in users %}
-            <h2>{{ user.name }}</h2>
-            <p>{{ user.email }}</p>
+        <h2>{{ user.name }}</h2>
+        <p>{{ user.email }}</p>
         {% endfor %}
     </ul>
+</div>
 
 {% endblock %}
