@@ -79,4 +79,32 @@ class User extends \Core\Model {
         }
     }
 
+    public static function getMessage() {
+
+        try {
+
+            $db = static::getDB();
+
+            if (isset($_POST['submit']) && !empty($_POST['name'])) {
+
+                $name = $_POST['name'];
+                $msg = $_POST['msg'];
+
+                $sql = "INSERT INTO chat (id, name, msg, date) VALUES (NULL, :name, :msg, CURRENT_TIMESTAMP)";
+
+                $stmt = $db->prepare($sql);
+
+                $stmt->bindValue(":name", $name, PDO::PARAM_STR);
+                $stmt->bindValue(":msg", $msg, PDO::PARAM_STR);
+
+                if ($stmt->execute()) {
+                    echo "<embed loop='false' src='sound' hidden='true' autoplay='true' />";
+                }
+            }
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
 }

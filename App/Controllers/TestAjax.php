@@ -15,6 +15,7 @@ class TestAjax extends \Core\Controller  {
 
     public static function indexAction() {
         $users = User::getAll();
+        $message = User::getMessage();
         View::renderTemplate('Users/index.html', ['users' => $users]);
 
     }
