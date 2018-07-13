@@ -1,0 +1,7 @@
+{% for user in users %}
+<div id="chat_data">
+    <span class="chat_name">{{ user.name }}:</span>
+    <span>{{ user.msg }}</span>
+    <span class="time">{{ user.date  | date('g:i A') }}</span>
+</div>
+{% endfor %}

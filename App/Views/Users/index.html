@@ -8,20 +8,14 @@
 
     <div id="chat_box">
 
-        {% for user in users %}
-        <div id="chat_data">
-            <span class="chat_name">{{ user.name }}:</span>
-            <span>{{ user.msg }}</span>
-            <span class="time">{{ user.date  | date('g:i A') }}</span>
-        </div>
-        {% endfor %}
+        <div id="chat"></div>
 
     </div>
 
     <form action="index" method="post">
-        <input type="text" name="name" placeholder="Enter Name"><br>
+        <input class="chat_input" type="text" name="name" placeholder="Enter Name"><br>
         <textarea name="msg" placeholder="Enter Message"></textarea>
-        <input type="submit" name="submit" value="Send">
+        <input class="chat_input" type="submit" name="submit" value="Send">
     </form>
 
 </div>

@@ -32,6 +32,34 @@
                 })
             })
         });
+
+        function chatAjax() {
+
+            //retrieve data from URL without refreshing page
+            var req = new XMLHttpRequest();
+
+            //fires when the state of the object has changed
+            req.onreadystatechange = function () {
+
+                //retrieve value's current state in object and HTTP status
+                //compare to value of DONE and status of OK
+                if (req.readyState == 4 && req.status == 200) {
+
+                    //in the web page retrieve container of id #chat and assign it the current state within the variable req
+                    document.getElementById('chat').innerHTML = req.responseText;
+                }
+            }
+
+            //opens a new window and loads a document specified by the given URL
+            req.open('GET', '/testAjax/chat', true);
+
+            //sends the request to the server (used for GET)
+            req.send();
+        }
+
+        //calls a function or evaluates an expression at specified intervals (in milliseconds)
+        setInterval(function () {chatAjax()}, 1000);
+
     </script>
     {% endblock %}
     <style>
@@ -74,13 +102,7 @@
             float: right;
             font-size: smaller;
         }
-        input[type='text'] {
-            width: 100%;
-            height: 40px;
-            border: solid 1px dimgrey;
-            border-radius: 5px;
-        }
-        input[type='submit'] {
+        .chat_input {
             width: 100%;
             height: 40px;
             border: solid 1px dimgrey;
@@ -95,7 +117,7 @@
     </style>
 </head>
 
-<body>
+<body onload="chatAjax();">
     <nav>
         <a href="/">Home</a>
         <a href="/posts/index">Posts</a>

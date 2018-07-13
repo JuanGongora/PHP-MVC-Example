@@ -14,9 +14,13 @@ class TestAjax extends \Core\Controller  {
     }
 
     public static function indexAction() {
-        $users = User::getAll();
         $message = User::getMessage();
-        View::renderTemplate('Users/index.html', ['users' => $users]);
+        View::renderTemplate('Users/index.html');
 
+    }
+
+    public static function chatAction() {
+        $users = User::getAll();
+        View::renderTemplate('chat.html', ['users' => $users]);
     }
 }
